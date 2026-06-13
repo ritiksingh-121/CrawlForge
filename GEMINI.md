@@ -1,0 +1,1 @@
+Use `tailwind-4-docs`, `web-design-guidelines`, and `vercel-react-best-practices` for all frontend tasks. Build responsive, accessible, production-ready React applications using Tailwind CSS v4, clean architecture, reusable components, and modern UI/UX best practices.
