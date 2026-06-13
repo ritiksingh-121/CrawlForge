@@ -44,6 +44,8 @@ class ScrapingService {
 
       this._emit(job.id, 'scraping:status', { status: 'launching', message: 'Launching browser...' });
 
+      // Force Playwright to find Chromium in node_modules (Render doesn't persist the default cache)
+      process.env.PLAYWRIGHT_BROWSERS_PATH = '0';
       browser = await chromium.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
