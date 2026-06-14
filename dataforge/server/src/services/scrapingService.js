@@ -4,6 +4,9 @@ import Job from '../models/Job.js';
 import Project from '../models/Project.js';
 import { v4 as uuidv4 } from 'uuid';
 
+// Force Playwright to find Chromium in node_modules (Render doesn't persist the default cache)
+process.env.PLAYWRIGHT_BROWSERS_PATH = '0';
+
 class ScrapingService {
   constructor() {
     this.io = null;
@@ -44,8 +47,6 @@ class ScrapingService {
 
       this._emit(job.id, 'scraping:status', { status: 'launching', message: 'Launching browser...' });
 
-      // Force Playwright to find Chromium in node_modules (Render doesn't persist the default cache)
-      process.env.PLAYWRIGHT_BROWSERS_PATH = '0';
       browser = await chromium.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],

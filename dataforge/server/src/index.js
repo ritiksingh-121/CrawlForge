@@ -11,6 +11,9 @@ import { connectRedis } from './config/redis.js';
 import { errorHandler, notFound } from './middleware/errorHandler.js';
 import scrapingService from './services/scrapingService.js';
 
+// Must be set before Playwright resolves browser path at launch time
+process.env.PLAYWRIGHT_BROWSERS_PATH = '0';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
